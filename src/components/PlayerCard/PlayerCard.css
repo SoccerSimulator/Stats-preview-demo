@@ -1,0 +1,44 @@
+.player-card {
+    background: #333;
+    color: #fff;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 8px;
+  }
+  
+  .player-header {
+    margin-bottom: 20px;
+  }
+  
+  .categories {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+  
+  .category {
+    text-align: center;
+    margin: 10px;
+  }
+  
+  .category h2 {
+    margin-top: 10px;
+    color: #FFD700; /* Gold color for category titles */
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  /* .pentagon-chart {
+    margin-top: 20px;
+  } */
+
+  .pentagon-chart {
+    width: 100%; /* Or a specific size */
+    height: 400px; /* Make sure it has height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }

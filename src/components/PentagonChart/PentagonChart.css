@@ -1,0 +1,13 @@
+.chart-container {
+    position: relative;
+    width: 400px; /* Adjust based on your layout needs */
+    height: 400px; /* Adjust based on your layout needs */
+  }
+  
+  .chart-label {
+    font-size: 12px;
+    font-weight: bold;
+    color: #fff; /* White color for the text */
+  }
+  
+  /* Additional styling can go here */
