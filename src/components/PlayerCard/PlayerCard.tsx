@@ -22,9 +22,6 @@ export const PlayerCard: React.FC<PlayerCardProps> = ({ player }) => {
     Averages
   } = player;
 
-    console.log('idan -  Averages:', Averages)
-
-
   const categories = Object.keys(Stats);
 
   return (
@@ -51,7 +48,6 @@ export const PlayerCard: React.FC<PlayerCardProps> = ({ player }) => {
       </div>
       <div className="pentagon-chart">
       <RadarChart categories={categories} seriesData={Object.values(Averages)} />
-        {/* <PentagonChart data={Object.values(Averages)} labels={categories} /> */}
       </div>
     </div>
   );

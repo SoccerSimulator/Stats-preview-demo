@@ -4,7 +4,7 @@ import axios from 'axios';
 import {PlayerCard} from './components/PlayerCard';
 import { Player } from './types';
 
-const API=false? 'https://soccer-simulation.onrender.com/api/team':'http://127.0.0.1:8000/api/team'
+const API=true? 'https://soccer-simulation.onrender.com/api/team':'http://127.0.0.1:8000/api/team'
 
 
 
