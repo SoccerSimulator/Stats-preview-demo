@@ -1,55 +1,28 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 
-import {PlayerCard} from './components/PlayerCard';
-import { Player } from './types';
-
-const API=true? 'https://soccer-simulation.onrender.com/api/team':'http://127.0.0.1:8000/api/team'
-
-
+import WeakerPlayer from './screens/WeakerPlayer';
+import NormalPlayer from './screens/NormalPlayer';
+import ExcellentPlayer from './screens/ExcellentPlayer';
+import './App.css';
 
 const App: React.FC = () => {
-  const [players, setPlayers] = useState<Player[]>([]);
-  const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
-
-  useEffect(() => {
-    const fetchPlayers = async () => {
-      try {
-        const response = await axios.get<Player[]>(API);
-        // console.log('idan -  fetchPlayers  response.data:', response.data)
-        if (response.data) {
-          setPlayers(response.data); 
-        } else {
-          setError('No players found in response');
-        }
-        setLoading(false);
-      } catch (err) {
-        setError('Failed to fetch players');
-        setLoading(false);
-        console.error('Error fetching data:', err);
-      }
-    };
-
-    fetchPlayers();
-  }, []);
-
-  if (loading) {
-    return <p>Loading players...</p>;
-  }
-
-  if (error) {
-    return <p>{error}</p>;
-  }
-
   return (
-    <div>
-      {players.length > 0 ? (
-        players.map(player => <PlayerCard key={player.ID} player={player} />)
-      ) : (
-        <p>No players available.</p>
-      )}
-    </div>
+    <Router>
+      <div className="App">
+      <Link to="/weaker"><button className="styled-button">Generate Weaker Players</button></Link>
+      <Link to="/normal"><button className="styled-button">Generate Normal Players</button></Link>
+      <Link to="/excellent"><button className="styled-button">Generate Excellent Players</button></Link>
+
+
+        <Routes>
+          <Route path="/weaker" element={<WeakerPlayer />} />
+          <Route path="/normal" element={<NormalPlayer />} />
+          <Route path="/excellent" element={<ExcellentPlayer />} />
+          <Route path="/" element={<h1>Welcome! Select a player level to view</h1>} />
+        </Routes>
+      </div>
+    </Router>
   );
 };
 
