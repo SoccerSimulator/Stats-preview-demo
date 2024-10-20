@@ -1,13 +1,14 @@
 export interface Player {
     ID: string;
     Name: string;
+    Level: string;
     Shirt_Number: number;
     Position: string;
     Age: number;
     Height: number;
     Preferred_Foot: {
-      Dominant_Foot: string;
-      Weak_Foot_Level: number;
+      'Dominant Foot': string;
+      'Weak Foot Level': number;
     };
     Stamina: number;
     Fitness: string;
