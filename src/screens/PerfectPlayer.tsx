@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-import './player.css';
+import './player.css'
 import { PlayerCard } from '../components/PlayerCard';
 import { Player } from '../types';
-import { TEAM_NORMAL } from '../api';
+import { BASE_TEAM_URL } from '../api';
 import { PlayerLevels } from '../types/player';
 
-const NormalPlayer: React.FC = () => {
+const PerfectPlayer: React.FC = () => {
   const [players, setPlayers] = useState<Player[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
@@ -17,10 +17,10 @@ const NormalPlayer: React.FC = () => {
     try {
       setLoading(true);
       setError(null);
-      const response = await axios.get<Player[]>(TEAM_NORMAL);
+      const response = await axios.get<Player[]>(BASE_TEAM_URL);
       if (response.data) {
-        const normalPlayers = response.data.filter(player => player.Level === PlayerLevels.Normal);
-        setPlayers(normalPlayers);
+        const perfectPlayers = response.data.filter(player => player.Level === PlayerLevels.Excellent || player.Level === PlayerLevels.Normal || player.Level === PlayerLevels.Weaker);
+        setPlayers(perfectPlayers);
       } else {
         setError('No players found in response');
       }
@@ -46,11 +46,14 @@ const NormalPlayer: React.FC = () => {
 
   return (
     <div>
-      <button className="refresh-button" onClick={fetchPlayers}>
-        Refresh Players
-      </button>
+<button className="refresh-button" onClick={() => fetchPlayers()}>
+  Refresh Players
+</button>
+
       {players.length > 0 ? (
-        players.map(player => <PlayerCard key={player.ID} player={player} />)
+        players.map(player => (
+          <PlayerCard key={player.ID} player={player} />
+        ))
       ) : (
         <p>No players available.</p>
       )}
@@ -58,4 +61,4 @@ const NormalPlayer: React.FC = () => {
   );
 };
 
-export default NormalPlayer;
+export default PerfectPlayer;
