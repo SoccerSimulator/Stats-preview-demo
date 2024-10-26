@@ -1,7 +1,6 @@
-// CircularGauge.tsx
 import React from 'react';
-import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
-import 'react-circular-progressbar/dist/styles.css';
+import { Gauge, gaugeClasses } from '@mui/x-charts/Gauge';
+import './CircularGauge.css'
 
 interface CircularGaugeProps {
   value: number;
@@ -9,27 +8,40 @@ interface CircularGaugeProps {
 }
 
 const getColor = (value: number): string => {
-  // Green to red, a simple gradient: green at 100, red at 0
-  const red = Math.floor((255 * (100 - value)) / 100);
-  const green = Math.floor((255 * value) / 100);
-  return `rgb(${red}, ${green}, 0)`;
+  if (value <= 20) {
+    return '#FF0000'; // Red
+  } else if (value <= 40) {
+    return '#FF7200'; // Orange
+  } else if (value <= 60) {
+    return '#FFD900'; // Yellow
+  } else if (value <= 80) {
+    return '#86DB38'; // Light Green
+  } else {
+    return '#00DE75'; // Green
+  }
 };
 
 export const CircularGauge: React.FC<CircularGaugeProps> = ({ value, text }) => {
   return (
-    <div style={{ width: 100, height: 100, padding: 10 }}>
-      <CircularProgressbar
+    <div style={{ width: 150, height: 100 }}>
+      <Gauge
         value={value}
-        text={`${value}%`}
-        styles={buildStyles({
-          textSize: '30px',
-          pathColor: getColor(value),
-          textColor: '#fff',
-          trailColor: '#ddd',
-          backgroundColor: '#3e98c7',
-        })}
+        startAngle={-90}
+        endAngle={90}
+        sx={{
+          [`& .${gaugeClasses.valueArc}`]: {
+            fill: getColor(value),
+          },
+          [`& .${gaugeClasses.valueText}`]: {
+            fontSize: '40px',
+            fill: '#ffffff',
+          },
+          [`& .${gaugeClasses.referenceArc}`]: {
+            fill: '#ffffff',
+          },
+        }}
+  
       />
-      <div style={{ color: '#fff', textAlign: 'center', fontSize: '16px' }}>{text}</div>
     </div>
   );
 };
