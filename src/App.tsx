@@ -6,6 +6,7 @@ import NormalPlayer from './screens/NormalPlayer';
 import ExcellentPlayer from './screens/ExcellentPlayer';
 import PerfectPlayer from './screens/PerfectPlayer';
 import './App.css';
+import YoungPlayer from "./screens/YoungPlayer";
 
 const App: React.FC = () => {
   return (
@@ -15,6 +16,7 @@ const App: React.FC = () => {
       <Link to="/normal"><button className="styled-button">Generate Normal Players</button></Link>
       <Link to="/excellent"><button className="styled-button">Generate Excellent Players</button></Link>
       <Link to="/perfect"><button className="styled-button">Generate Perfect Team</button></Link>
+      <Link to="/younger"><button className="styled-button">Generate Younger Team</button></Link>
 
 
         <Routes>
@@ -22,6 +24,7 @@ const App: React.FC = () => {
           <Route path="/normal" element={<NormalPlayer />} />
           <Route path="/excellent" element={<ExcellentPlayer />} />
           <Route path="/perfect" element={<PerfectPlayer />} />
+          <Route path="/younger" element={<YoungPlayer />} />
           <Route path="/" element={<h1>Welcome! Select a player level to view</h1>} />
         </Routes>
       </div>
